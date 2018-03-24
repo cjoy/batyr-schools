@@ -72,7 +72,7 @@
           <h1>{{currSchool.name}}</h1>
           <h3>{{currSchool.address}}</h3>
           <b>Event Type</b>: {{currSchool.event_type }}<br />
-          <b>Visit Date</b>: {{parseDate(currSchool.start_time)}}<br />
+          <b>Visit Date</b>: {{formatDate(currSchool.start_time)}}<br />
           <b>Number of Visits</b>: {{currSchool.num_of_events_cohort}}<br />
           <b>Students attended</b>: {{currSchool.students_attended}}<br />
           <b>Students surveyed</b>: {{currSchool.students_surveyed}}<br />
@@ -126,6 +126,13 @@ export default {
     }
   },
   methods: {
+    clearPlace() {
+      this.currPlace = null;
+      this.currSchool = null;
+    },
+    formatDate(date) {
+      return fecha.format(new Date(date), 'MMMM Do, YYYY');
+    },
     getCoordinates (school) {
       if (!school) return;
       return { lng: school.longitude, lat: school.latitude }
@@ -143,6 +150,7 @@ export default {
     },
     findSchool() {
       this.zoomLevel = 17;
+      this.currSchool = null;
     },
     setPlace(place) {
       this.currPlace = place;
@@ -151,19 +159,12 @@ export default {
       this.currCoord = { lng, lat };
       this.zoomIn();
     },
-    clearPlace() {
-      this.currPlace = null;
-      this.currSchool = null;
-    },
-    parseDate(date) {
-      return fecha.format(new Date(date), 'MMMM Do, YYYY');
-    },
   },
   async mounted() {
    loaded.then(()=>{
-     this.googleMapsInitialized = true; // define this property in data
+     this.googleMapsInitialized = true;
    });
- },
+  },
 };
 </script>
 
