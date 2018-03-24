@@ -1,6 +1,6 @@
-# app
+# Batyr schools initiative app
 
-> Batyr schools initiative app
+> Improve schools engagement.
 
 ## Build Setup
 
