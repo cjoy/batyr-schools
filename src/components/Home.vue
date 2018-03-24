@@ -166,13 +166,6 @@ export default {
         }
       })
     },
-    setPlace(place) {
-      this.currPlace = place;
-      let lng = place.geometry.location.lng();
-      let lat = place.geometry.location.lat();
-      this.currCoord = { lng, lat };
-      this.zoomIn();
-    },
   },
   async mounted() {
    loaded.then(()=>{
