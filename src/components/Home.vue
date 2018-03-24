@@ -1,47 +1,31 @@
 <template>
   <div id="home">
+    <md-toolbar>
+      <img
+        src="http://www.batyr.com.au/wp-content/uploads/batyr-logo-reg-blue.png"
+        style="width: 40px;"
+      />
+    </md-toolbar>
     <div class="batyr-pane">
-      <md-card class="stats-box">
-        <md-content style="background-color: #90C4A6; color: white; width: 33.33%; min-height: 100%; padding: 20px">
-         <h2>National Rates</h2>
-          Help Seeking Rate: <span class="stat-val">23%</span><br>
-          Young Australians: <span class="stat-val">2,988,390</span> (residents aged 15 to 24*)<br>
-          Schools in Australia: <span class="stat-val">4,177</span><br>
-        </md-content>
-        <md-content style="background-color: #079EF4; color: white; width: 33.33%; min-height: 100%; padding: 20px">
-         <h2>Batyr Current</h2>
-          Help seeking rate: <span class="stat-val">69%</span><br>
-          Young Australians Reached: <span class="stat-val">83,488</span><br>
-          Number of Schools: <span class="stat-val">232</span><br>
-        </md-content>
-        <md-content style="background-color: #28aefc; color: white; width: 33.33%; min-height: 100%; padding: 20px">
-         <h2>Batyr 2022 TARGET</h2>
-            Help seeking rate: <span class="stat-val">75%</span><br>
-            Young Australians Reached: <span class="stat-val">1 Million</span><br>
-            Number of Schools: <span class="stat-val">1000</span><br>
-        </md-content>
-      </md-card>
-      <md-card class="search-box">
-        <gmap-autocomplete
-          v-if="googleMapsInitialized"
-          class="searchBox"
-          placeholder="Enter your school name"
-          @place_changed="setPlace"
-          @change="clearPlace()"
-          :options="{
-            componentRestrictions: {
-              country: ['au'],
-            },
-          types: ['establishment']
-        }">
-        </gmap-autocomplete>
-        <md-button
-          class="md-raised md-primary searchButton"
-          @click="findSchool()"
-        >
-          Find School
-        </md-button>
-      </md-card>
+      <!-- SearchBox{start} -->
+      <md-toolbar class="md-primary search-box">
+        <div class="md-toolbar-row">
+          <md-autocomplete
+            v-model="schoolInput"
+            :md-options="batyrIndexNames"
+            md-layout="box">
+            <label>Search by school name</label>
+          </md-autocomplete>
+          <md-button
+            class="md-raised searchButton"
+            @click="findSchool()"
+          >
+            Find School
+          </md-button>
+        </div>
+      </md-toolbar>
+      <!-- SearchBox{end} -->
+      <!-- GoogleMap{start} -->
       <md-card>
         <gmap-map
           v-if="googleMapsInitialized"
@@ -67,6 +51,8 @@
           </gmap-info-window> -->
         </gmap-map>
       </md-card>
+      <!-- GoogleMap{end} -->
+      <!-- InfoBox{start} -->
       <md-card class="info-box">
         <div v-if="currSchool">
           <h1>{{currSchool.name}}</h1>
@@ -95,6 +81,29 @@
           </md-empty-state>
         </div>
       </md-card>
+      <!-- InfoBox{end} -->
+      <!-- StatsBox{start} -->
+      <md-card class="stats-box">
+        <md-content style="background-color: #90C4A6; color: white; width: 33.33%; min-height: 100%; padding: 20px">
+         <h2>National statistics</h2>
+          Help Seeking Rate: <span class="stat-val">23%</span><br>
+          Young Australians: <span class="stat-val">2,988,390</span> (residents aged 15 to 24*)<br>
+          Total number of schools: <span class="stat-val">4,177</span><br>
+        </md-content>
+        <md-content style="background-color: #079EF4; color: white; width: 33.33%; min-height: 100%; padding: 20px">
+         <h2>Current batyr statistics</h2>
+          Help seeking rate: <span class="stat-val">69%</span><br>
+          Young Australians reached: <span class="stat-val">83,488</span><br>
+          Number of schools visited: <span class="stat-val">232</span><br>
+        </md-content>
+        <md-content style="background-color: #28aefc; color: white; width: 33.33%; min-height: 100%; padding: 20px">
+         <h2>batyr 2022 target</h2>
+            Help seeking rate: <span class="stat-val">75%</span><br>
+            Young Australians reached: <span class="stat-val">1 Million</span><br>
+            Number of schools visited: <span class="stat-val">1000+</span><br>
+        </md-content>
+      </md-card>
+      <!-- StatsBox{end} -->
       <small>
         <br>* Slade, T., et al., The mental health of Australians 2: Report on the 2007 national survey of mental health and wellbeing. 2009, Canberra, Australia: Department of Health and Ageing.
         <br>“Service use was lowest among the youngest age groups with less than one quarter of people having used services for mental health problems in the previous 12 months (23.3% aged 16-34 years).”
@@ -116,6 +125,8 @@ export default {
   name: 'Home',
   data() {
     return {
+      schoolInput: null,
+      batyrIndexNames: SchoolsData.map(school => school.name),
       icon: MapMarker,
       googleMapsInitialized: false,
       zoomLevel: 11,
@@ -149,8 +160,11 @@ export default {
       this.zoomIn();
     },
     findSchool() {
-      this.zoomLevel = 17;
-      this.currSchool = null;
+      SchoolsData.forEach(school => {
+        if (school.name === this.schoolInput) {
+          this.showSchool(school);
+        }
+      })
     },
     setPlace(place) {
       this.currPlace = place;
@@ -169,9 +183,11 @@ export default {
 </script>
 
 <style scoped>
+/* Misc */
 .stat-val {
   font-size: 1.4em;
 }
+/* Boxes */
 .stats-box {
   overflow: hidden;
   height: 200px;
@@ -185,28 +201,7 @@ export default {
   padding: 20px;
 }
 .search-box {
-  overflow: hidden;
-  padding: 30px;
-  height: 100px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-.searchBox {
-  border-radius: 5px;
-  height: 45px;
-  width: 830px;
-  color: black;
-  padding: 20px;
-}
-.searchButton {
-  height: 45px;
-  padding: 10px;
-}
-.gmap-map {
   width: 1024px;
-  height: 400px;
 }
 .batyr-pane {
   display: flex;
@@ -216,9 +211,17 @@ export default {
   width: 100%;
   padding: 30px;
 }
+/* Components */
+.searchButton {
+  height: 45px;
+  padding: 10px;
+}
+.gmap-map {
+  width: 1024px;
+  height: 400px;
+}
 .md-card {
   min-height: 100px;
   width: 1024px;
-  margin-bottom: 20px;
 }
 </style>
