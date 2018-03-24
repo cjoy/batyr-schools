@@ -82,16 +82,16 @@
         <div v-if="!currSchool">
           <md-empty-state
             class="md-primary"
-            md-icon="done"
-            md-label="Nothing in Done"
-            md-description="Anything you mark done will be safely stored here.">
-          </md-empty-state>
-          <md-empty-state
-            class="md-accent"
-            md-rounded
-            md-icon="alarm_off"
-            md-label="Nothing in Reminders"
-            md-description="Create a Reminder and it will show up here.">
+            md-label="Can't find your school?"
+            md-description="batyr@school programs aim to remove the stigma around mental health and engage, educate and empower young people to reach out for support when they need it."
+          >
+            <md-button
+              href="http://www.batyr.com.au/school-programs/#wpcf7-f152-p97-o1"
+              target="_blank"
+              class="md-raised md-primary"
+            >
+              Request a program at your school
+            </md-button>
           </md-empty-state>
         </div>
       </md-card>
