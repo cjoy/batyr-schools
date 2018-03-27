@@ -9,19 +9,19 @@
     <div class="batyr-pane">
       <!-- StatsBox{start} -->
       <md-card class="stats-box">
-        <md-content style="background-color: #90C4A6; color: white; width: 33.33%; min-height: 100%; padding: 20px">
+        <md-content style="background-color: rgb(255, 131, 29);; color: white; width: 33.33%; min-height: 100%; padding: 20px">
          <h2>National statistics</h2>
           Help Seeking Rate: <span class="stat-val">23%</span><br>
           Young Australians: <span class="stat-val">2,988,390</span> (residents aged 15 to 24*)<br>
           Total number of schools: <span class="stat-val">4,177</span><br>
         </md-content>
-        <md-content style="background-color: #079EF4; color: white; width: 33.33%; min-height: 100%; padding: 20px">
+        <md-content style="background-color: rgb(0, 104, 165); color: white; width: 33.33%; min-height: 100%; padding: 20px">
          <h2>Current batyr statistics</h2>
           Help seeking rate: <span class="stat-val">69%</span><br>
           Young Australians reached: <span class="stat-val">83,488</span><br>
           Number of schools visited: <span class="stat-val">232</span><br>
         </md-content>
-        <md-content style="background-color: #28aefc; color: white; width: 33.33%; min-height: 100%; padding: 20px">
+        <md-content style="background-color: rgb(0, 165, 222);; color: white; width: 33.33%; min-height: 100%; padding: 20px">
          <h2>batyr 2022 target</h2>
             Help seeking rate: <span class="stat-val">75%</span><br>
             Young Australians reached: <span class="stat-val">1 Million</span><br>
