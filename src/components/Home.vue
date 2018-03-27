@@ -7,13 +7,35 @@
       />
     </md-toolbar>
     <div class="batyr-pane">
+      <!-- StatsBox{start} -->
+      <md-card class="stats-box">
+        <md-content style="background-color: #90C4A6; color: white; width: 33.33%; min-height: 100%; padding: 20px">
+         <h2>National statistics</h2>
+          Help Seeking Rate: <span class="stat-val">23%</span><br>
+          Young Australians: <span class="stat-val">2,988,390</span> (residents aged 15 to 24*)<br>
+          Total number of schools: <span class="stat-val">4,177</span><br>
+        </md-content>
+        <md-content style="background-color: #079EF4; color: white; width: 33.33%; min-height: 100%; padding: 20px">
+         <h2>Current batyr statistics</h2>
+          Help seeking rate: <span class="stat-val">69%</span><br>
+          Young Australians reached: <span class="stat-val">83,488</span><br>
+          Number of schools visited: <span class="stat-val">232</span><br>
+        </md-content>
+        <md-content style="background-color: #28aefc; color: white; width: 33.33%; min-height: 100%; padding: 20px">
+         <h2>batyr 2022 target</h2>
+            Help seeking rate: <span class="stat-val">75%</span><br>
+            Young Australians reached: <span class="stat-val">1 Million</span><br>
+            Number of schools visited: <span class="stat-val">1000+</span><br>
+        </md-content>
+      </md-card>
+      <!-- StatsBox{end} -->
       <!-- SearchBox{start} -->
-      <md-toolbar class="md-primary search-box">
+      <md-toolbar class="search-box">
         <div class="md-toolbar-row">
           <md-autocomplete
             v-model="schoolInput"
             :md-options="batyrIndexNames"
-            md-layout="box">
+            >
             <label>Search by school name</label>
           </md-autocomplete>
           <md-button
@@ -57,13 +79,10 @@
         <div v-if="currSchool">
           <h1>{{currSchool.name}}</h1>
           <h3>{{currSchool.address}}</h3>
-          <b>Event Type</b>: {{currSchool.event_type }}<br />
-          <b>Visit Date</b>: {{formatDate(currSchool.start_time)}}<br />
-          <b>Number of Visits</b>: {{currSchool.num_of_events_cohort}}<br />
-          <b>Students attended</b>: {{currSchool.students_attended}}<br />
-          <b>Students surveyed</b>: {{currSchool.students_surveyed}}<br />
-          <b>Engagement</b>: {{currSchool.engagement}}<br />
-          <b>Help seeking</b>: {{currSchool.help_seeking}}<br />
+          <span v-if="currSchool.students_attended"><b>Students attended</b>: {{currSchool.students_attended}}<br /></span>
+          <span v-if="currSchool.students_surveyed"><b>Students surveyed</b>: {{currSchool.students_surveyed}}<br /></span>
+          <span v-if="currSchool.engagement"><b>Engagement</b>: {{currSchool.engagement}}<br /></span>
+          <span v-if="currSchool.help_seeking"><b>Help seeking</b>: {{currSchool.help_seeking}}<br /></span>
         </div>
         <div v-if="!currSchool">
           <md-empty-state
@@ -82,28 +101,6 @@
         </div>
       </md-card>
       <!-- InfoBox{end} -->
-      <!-- StatsBox{start} -->
-      <md-card class="stats-box">
-        <md-content style="background-color: #90C4A6; color: white; width: 33.33%; min-height: 100%; padding: 20px">
-         <h2>National statistics</h2>
-          Help Seeking Rate: <span class="stat-val">23%</span><br>
-          Young Australians: <span class="stat-val">2,988,390</span> (residents aged 15 to 24*)<br>
-          Total number of schools: <span class="stat-val">4,177</span><br>
-        </md-content>
-        <md-content style="background-color: #079EF4; color: white; width: 33.33%; min-height: 100%; padding: 20px">
-         <h2>Current batyr statistics</h2>
-          Help seeking rate: <span class="stat-val">69%</span><br>
-          Young Australians reached: <span class="stat-val">83,488</span><br>
-          Number of schools visited: <span class="stat-val">232</span><br>
-        </md-content>
-        <md-content style="background-color: #28aefc; color: white; width: 33.33%; min-height: 100%; padding: 20px">
-         <h2>batyr 2022 target</h2>
-            Help seeking rate: <span class="stat-val">75%</span><br>
-            Young Australians reached: <span class="stat-val">1 Million</span><br>
-            Number of schools visited: <span class="stat-val">1000+</span><br>
-        </md-content>
-      </md-card>
-      <!-- StatsBox{end} -->
       <small>
         <br>* Slade, T., et al., The mental health of Australians 2: Report on the 2007 national survey of mental health and wellbeing. 2009, Canberra, Australia: Department of Health and Ageing.
         <br>“Service use was lowest among the youngest age groups with less than one quarter of people having used services for mental health problems in the previous 12 months (23.3% aged 16-34 years).”
