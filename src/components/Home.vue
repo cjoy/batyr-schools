@@ -87,8 +87,8 @@
           <h3>{{currSchool.address}}</h3>
           <span v-if="currSchool.students_attended"><b>Students attended</b>: {{currSchool.students_attended}}<br /></span>
           <span v-if="currSchool.students_surveyed"><b>Students surveyed</b>: {{currSchool.students_surveyed}}<br /></span>
-          <span v-if="currSchool.engagement"><b>Engagement</b>: {{currSchool.engagement}}<br /></span>
-          <span v-if="currSchool.help_seeking"><b>Help seeking</b>: {{currSchool.help_seeking}}<br /></span>
+          <span v-if="currSchool.engagement"><b>Engagement</b>: {{currSchool.engagement}}%<br /></span>
+          <span v-if="currSchool.help_seeking"><b>Help seeking</b>: {{currSchool.help_seeking}}%<br /></span>
         </div>
         <div v-if="!currSchool">
           <md-empty-state
