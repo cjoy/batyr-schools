@@ -35,8 +35,14 @@
           <md-autocomplete
             v-model="schoolInput"
             :md-options="batyrIndexNames"
-            >
+          >
             <label>Search by school name</label>
+            <template slot="md-autocomplete-item" slot-scope="{ item, term }">
+              <md-highlight-text :md-term="term">{{ item }}</md-highlight-text>
+            </template>
+            <template slot="md-autocomplete-empty" slot-scope="{ term }">
+              No schools matching "{{ term }}" were found. <a target="_blank" href="http://www.batyr.com.au/school-programs/#wpcf7-f152-p97-o1">Click here</a> to request a visit!
+            </template>
           </md-autocomplete>
           <md-button
             class="md-raised searchButton"
