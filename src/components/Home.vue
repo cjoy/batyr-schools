@@ -1,11 +1,5 @@
 <template>
   <div id="home">
-    <md-toolbar>
-      <img
-        src="http://www.batyr.com.au/wp-content/uploads/batyr-logo-reg-blue.png"
-        style="width: 40px;"
-      />
-    </md-toolbar>
     <div class="batyr-pane">
       <!-- StatsBox{start} -->
       <md-card class="stats-box">
