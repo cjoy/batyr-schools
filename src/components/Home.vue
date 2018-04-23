@@ -5,20 +5,20 @@
       <md-content class="md-layout-item stat-box md-medium-size-33 md-small-size-50 md-xsmall-size-100" style="background: rgb(255, 131, 29);">
         <h2>National statistics</h2>
         Help Seeking Rate <span class="stat-val">23%</span><br>
-        Young Australians reached <span class="stat-val">2,988,390</span><br>
-        Total number of schools <span class="stat-val">4,177</span><br>
+        Young Australians Reached <span class="stat-val">2,988,390</span><br>
+        Total Number of Schools <span class="stat-val">4,177</span><br>
       </md-content>
       <md-content class="md-layout-item stat-box md-medium-size-33 md-small-size-50 md-xsmall-size-100" style="background: rgb(0, 104, 165);">
         <h2>Current <b>batyr</b> statistics</h2>
-        Help seeking rate <span class="stat-val">69%</span><br>
-        Young Australians reached <span class="stat-val">85,000+</span><br>
-        Number of schools visited <span class="stat-val">232</span><br>
+        Help Seeking Rate <span class="stat-val">69%</span><br>
+        Young Australians Reached <span class="stat-val">85,000+</span><br>
+        Number of Schools Visited <span class="stat-val">232</span><br>
       </md-content>
       <md-content class="md-layout-item stat-box md-medium-size-33 md-small-size-50 md-xsmall-size-100" style="background: rgb(0, 165, 222);">
         <h2><b>batyr</b> 2022 target</h2>
-          Help seeking rate <span class="stat-val">75%</span><br>
-          Young Australians reached <span class="stat-val">1 Million</span><br>
-          Number of schools visited <span class="stat-val">1000+</span><br>
+          Help Seeking Rate <span class="stat-val">75%</span><br>
+          Young Australians Reached <span class="stat-val">1 Million</span><br>
+          Number of Schools Visited <span class="stat-val">1000+</span><br>
       </md-content>
     </md-card>
     <!-- StatsBox{end} -->
